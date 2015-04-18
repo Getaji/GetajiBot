@@ -18,12 +18,19 @@ import sys
 from bot.commands.commands import add_command_executor
 from bot.twitters import *
 from bot.models import get_change
+from bot.models import (
+    on_status_event,
+    on_unfavorite_event
+)
 
-# Logger
+# ######### Initialize logger ########## #
 logging.basicConfig(format='%(asctime)s %(name)s %(levelname)s %(message)s',
                     datefmt='%Y/%m/%d %p %I:%M:%S')
 log = get_logger(__name__)
 
+# ######### Register event observers ########## #
+on_status_event.add_observer(on_status)
+on_unfavorite_event.add_observer(on_unfavorite_event)
 
 # ######### Register commands ########## #
 add_command_executor(CommandCCC())
@@ -40,7 +47,7 @@ add_command_executor(CommandSelect())
 add_command_executor(CommandTerminate())
 add_command_executor(CommandWikipedia())
 
-
+# ######### Initial Process ########## #
 twitter.account.update_profile(name="Getaji@bot稼働中")
 log.info("名前の変更に成功")
 if "--silent" in sys.argv:
@@ -50,13 +57,18 @@ else:
                  "直近の更新: " + get_change(True))
     log.info("botの起動ツイートに成功")
 
+# ######### Main loop ########## #
 for status in twitter_stream.user():
     if "friends" in status:
         log.info("UserStreamの接続に成功")
         continue
+    if "event" in status:
+        if status["event"] == "unfavorite":
+            on_unfavorite_event.fire(status)
+        continue
     if "user" in status and "text" in status:
         try:
-            on_status(status)
+            on_status_event.fire(status)
         except Exception:
             import traceback
             import logging

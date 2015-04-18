@@ -2,17 +2,21 @@ __author__ = 'Margherita'
 
 import re
 import sys
+from bot.event import EventMutable
 
 # commands and helps
 commands = {}
 helps = {}
 
+on_status_event = EventMutable()
+on_unfavorite_event = EventMutable()
+
 
 version = "0.2.0"
 environment = "local" if "--locally" in sys.argv else "remote"
-recent_change = "\";;\"以降をコメントアウトするように。\n" \
-                "shuffleコマンドに回数指定パラメータ-timesを追加。\n" \
-                "infoコマンドを追加。"
+recent_change = "あんふぁぼふぁぼ～\n" \
+                "\";;\"以降をコメントアウトするように。\n" \
+                "shuffleコマンドに回数指定パラメータ-timesを追加。"
 
 
 def get_change(newline_if_newline: bool=False):
