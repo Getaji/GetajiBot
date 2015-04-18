@@ -7,8 +7,8 @@ class CommandKawo(CommandExecutor):
 
     __kawo_chars = "┏┓┗┛━┃┣┫┻┳╋"
 
-    def __init__(self):
-        super().__init__(return_help_if_empty=True)
+    def __is_return_help_if_empty(self):
+        return True
 
     def get_names(self):
         return ["kawo"]

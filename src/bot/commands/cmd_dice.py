@@ -8,8 +8,8 @@ class CommandDice(CommandExecutor):
 
     dice_pattern = re.compile("^(\d+)[dD](\d+)(([\\+\\-])(.+))?$")
 
-    def __init__(self):
-        super().__init__(return_help_if_empty=True)
+    def __is_return_help_if_empty(self):
+        return True
 
     def get_names(self):
         return ["dice"]

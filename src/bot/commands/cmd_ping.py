@@ -4,7 +4,7 @@ from bot.models import Command
 
 class CommandPing(CommandExecutor):
     def get_names(self):
-        return ["commands", "cmds"]
+        return ["ping"]
 
     def get_help(self):
         return "Usage: pongと返します。\n" \

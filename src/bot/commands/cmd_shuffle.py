@@ -6,8 +6,8 @@ class CommandShuffle(CommandExecutor):
 
     from bot.utils import range_some, shuffle_f
 
-    def __init__(self):
-        super().__init__(return_help_if_empty=True)
+    def __is_return_help_if_empty(self):
+        return True
 
     def get_names(self):
         return ["shuffle", "shf"]
