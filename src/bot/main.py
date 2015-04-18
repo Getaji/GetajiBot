@@ -53,7 +53,7 @@ log.info("名前の変更に成功")
 if "--silent" in sys.argv:
     log.info("サイレントモードのため起動ツイートは投稿しない。")
 else:
-    post_bot_msg("botが起動しました\n"
+    post_bot_msg("起動しました\n"
                  "直近の更新: " + get_change(True))
     log.info("botの起動ツイートに成功")
 

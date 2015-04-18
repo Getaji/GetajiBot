@@ -41,7 +41,7 @@ def reply(text: str, user: dict, in_reply_to: dict=-1):
 
 
 def post_bot_msg(msg: str):
-    twitter.statuses.update(status="[{time}] {msg}".format(
+    twitter.statuses.update(status="[BOT][{time}] {msg}".format(
         time=get_formatted_time(),
         msg=msg
     ))
