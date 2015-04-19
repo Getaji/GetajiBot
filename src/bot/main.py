@@ -1,5 +1,4 @@
 import sys
-sys.path.append("./src/bot")
 
 from bot.commands.cmd_ccc import CommandCCC
 from bot.commands.cmd_dice import CommandDice
@@ -64,26 +63,28 @@ else:
 
 models.on_initialize_event.fire()
 
-# ######### Main loop ########## #
-for status in twitter_stream.user():
-    if "friends" in status:
-        log.info("UserStreamの接続に成功")
-        continue
-    if "event" in status:
-        if status["event"] == "unfavorite":
-            on_unfavorite_event.fire(status)
-        continue
-    if "user" in status and "text" in status:
-        try:
-            on_status_event.fire(status)
-        except Exception:
-            import traceback
-            import logging
 
-            logging.error(traceback.format_exc())
-            log.info("回復不可能なエラーが発生。終了する。")
-            post_bot_msg("回復不可能なエラーが発生しました。終了します。")
-            twitter.account.update_profile(name="Getaji@bot停止中")
-            log.info("名前の変更に成功")
-            import sys
-            sys.exit(-1)
+# ######### Main loop ########## #
+def run():
+    for status in twitter_stream.user():
+        if "friends" in status:
+            log.info("UserStreamの接続に成功")
+            continue
+        if "event" in status:
+            if status["event"] == "unfavorite":
+                on_unfavorite_event.fire(status)
+            continue
+        if "user" in status and "text" in status:
+            try:
+                on_status_event.fire(status)
+            except Exception:
+                import traceback
+                import logging
+
+                logging.error(traceback.format_exc())
+                log.info("回復不可能なエラーが発生。終了する。")
+                post_bot_msg("回復不可能なエラーが発生しました。終了します。")
+                twitter.account.update_profile(name="Getaji@bot停止中")
+                log.info("名前の変更に成功")
+                import sys
+                sys.exit(-1)
