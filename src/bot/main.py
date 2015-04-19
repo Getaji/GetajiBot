@@ -22,6 +22,7 @@ from bot.models import (
     on_status_event,
     on_unfavorite_event
 )
+from bot.unfavofavo import on_unfavofavo
 
 # ######### Initialize logger ########## #
 logging.basicConfig(format='%(asctime)s %(name)s %(levelname)s %(message)s',
@@ -31,7 +32,7 @@ log = get_logger(__name__)
 # ######### Register event observers ########## #
 log.info("Registering event observers...")
 on_status_event.add_observer(on_status)
-on_unfavorite_event.add_observer(on_unfavorite_event)
+on_unfavorite_event.add_observer(on_unfavofavo)
 
 # ######### Register commands ########## #
 log.info("Registering commands...")
