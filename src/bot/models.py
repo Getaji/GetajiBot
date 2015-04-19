@@ -10,6 +10,7 @@ helps = {}
 
 on_status_event = EventMutable()
 on_unfavorite_event = EventMutable()
+on_initialize_event = EventMutable()
 
 
 version = "0.2.0"

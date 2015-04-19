@@ -29,10 +29,12 @@ logging.basicConfig(format='%(asctime)s %(name)s %(levelname)s %(message)s',
 log = get_logger(__name__)
 
 # ######### Register event observers ########## #
+log.info("Registering event observers...")
 on_status_event.add_observer(on_status)
 on_unfavorite_event.add_observer(on_unfavorite_event)
 
 # ######### Register commands ########## #
+log.info("Registering commands...")
 add_command_executor(CommandCCC())
 add_command_executor(CommandCmds())
 add_command_executor(CommandDice())
@@ -48,6 +50,7 @@ add_command_executor(CommandTerminate())
 add_command_executor(CommandWikipedia())
 
 # ######### Initial Process ########## #
+log.info("Connecting twitter...")
 twitter.account.update_profile(name="Getaji@bot稼働中")
 log.info("名前の変更に成功")
 if "--silent" in sys.argv:
@@ -56,6 +59,8 @@ else:
     post_bot_msg("起動しました\n"
                  "直近の更新: " + get_change(True))
     log.info("botの起動ツイートに成功")
+
+models.on_initialize_event.fire()
 
 # ######### Main loop ########## #
 for status in twitter_stream.user():
