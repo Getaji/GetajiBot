@@ -1,1 +1,1 @@
-web: python bot/main.py
+bot: python src/bot/main.py
