@@ -1,1 +1,1 @@
-bot: python src/bot/main.py
+bot: PYTHONPATH=/src/bot python src/bot/main.py
