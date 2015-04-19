@@ -1,3 +1,6 @@
+import sys
+sys.path.append("./src/bot")
+
 from bot.commands.cmd_ccc import CommandCCC
 from bot.commands.cmd_dice import CommandDice
 from bot.commands.cmd_help import CommandHelp
@@ -13,7 +16,6 @@ from bot.commands.cmd_wikipedia import CommandWikipedia
 from bot.commands.cmd_shuffle_words import CommandShuffleWords
 
 import logging
-import sys
 
 from bot.commands.commands import add_command_executor
 from bot.twitters import *
