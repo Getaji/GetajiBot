@@ -4,7 +4,7 @@ from bot.models import Command
 
 class CommandTerminate(CommandExecutor):
 
-    from bot.utils import get_logger
+    from bot.mylogger import get_logger
 
     log = get_logger(__name__)
 

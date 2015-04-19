@@ -23,10 +23,9 @@ from bot.models import (
     on_unfavorite_event
 )
 from bot.unfavofavo import on_unfavofavo
+from bot.mylogger import get_logger
 
 # ######### Initialize logger ########## #
-logging.basicConfig(format='%(asctime)s %(name)s %(levelname)s %(message)s',
-                    datefmt='%Y/%m/%d %p %I:%M:%S')
 log = get_logger(__name__)
 
 # ######### Register event observers ########## #

@@ -1,6 +1,6 @@
 from twitter import *
 from bot import models
-from bot.utils import get_logger
+from bot.mylogger import get_logger
 from datetime import datetime
 from pytz import timezone
 import json
